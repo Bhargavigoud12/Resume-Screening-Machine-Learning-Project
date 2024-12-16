@@ -5,8 +5,6 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from waitress import serve 
  
-
-
 # Initialize Flask app
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
@@ -14,9 +12,9 @@ UPLOAD_FOLDER = 'uploads/'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Load pre-trained Random Forest model and label encoder 
-model_path = r'G:\text_to_video_explanation\model\random_forest_model.pkl'
-encoder_path = r'G:\text_to_video_explanation\model\label_encoder.pkl'
-vectorizer_path = r'G:\text_to_video_explanation\model\tfidf_vectorizer.pkl'
+model_path = r'enter path here'#path to random_forest_model.pkl
+encoder_path = r'enter path here'#path to label_encoder.pkl
+vectorizer_path = r'enter path here' # path to tfidf_vectorizer.pkl
 
 with open(model_path, 'rb') as model_file:
     rf_model = pickle.load(model_file)
