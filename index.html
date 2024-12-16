@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Screening</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="overlay">
+            <div class="container">
+                <h1 class="main-title">Resume Screening Tool</h1>
+                <p class="tagline">Get your resume categorized quickly with the power of AI.</p>
+                <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+                    <label for="resume" class="upload-label">Upload Your Resume (Text File)</label>
+                    <input type="file" id="resume" name="resume" accept=".txt" required>
+                    <button type="submit" class="submit-btn">Predict Category</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

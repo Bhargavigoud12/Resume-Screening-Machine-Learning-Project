@@ -1,0 +1,141 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fc;
+}
+
+h1, h3 {
+    font-weight: bold;
+    color: #333;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* Upload Form */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.upload-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+input[type="file"] {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    width: 100%;
+    max-width: 400px;
+}
+
+input[type="file"]:focus {
+    border-color: #6a11cb;
+}
+
+.submit-btn {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #6a11cb;
+}
+
+/* Result Page */
+pre {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 20px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    input[type="file"] {
+        max-width: 90%;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+    }
+}
