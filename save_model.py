@@ -11,7 +11,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.multiclass import OneVsRestClassifier
 
 # 1. Load the dataset
-resumeDataSet = pd.read_csv('resume_dataSet.csv', encoding='utf-8')
+resumeDataSet = pd.read_csv('ENTER DATASET FILE NAME HERE', encoding='utf-8')
 
 # 2. Function to clean resumes
 def cleanResume(resumeText):
