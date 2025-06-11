@@ -3,7 +3,7 @@ gTTS==2.2.3
 Pillow==8.3.2
 moviepy==1.0.3
 python-docx==0.8.11
-PyPDF2==1.26.0
+PyPDF2==1.26.4
 spacy==3.5.0
 textblob==0.15.3
 numpy==1.26.4
