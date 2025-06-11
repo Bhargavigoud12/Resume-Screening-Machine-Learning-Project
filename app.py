@@ -5,6 +5,12 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from waitress import serve 
 
+import os
+
+print("Current directory:", os.getcwd())
+print("Files in current directory:", os.listdir())
+print("Files in 'model' folder:", os.listdir('model'))
+
 
 # Initialize Flask app
 app = Flask(__name__)
