@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Screening</title>
-    <link rel="stylesheet" href="/static/style.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="hero-section">
         <div class="overlay">
             <div class="container">
-                <h1 class="main-title">Resume Screening Tool</h1>
-                <p class="tagline">Get your resume categorized quickly with the power of AI.</p>
-                <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
-                    <label for="resume" class="upload-label">Upload Your Resume (Text File)</label>
-                    <input type="file" id="resume" name="resume" accept=".txt" required>
-                    <button type="submit" class="submit-btn">Predict Category</button>
+                <h1 class="main-title">🔍 Resume Screening AI</h1>
+                <p class="tagline">Get your resume analyzed & categorized in seconds!</p>
+                <form action="/uploads" method="POST" enctype="multipart/form-data" class="upload-form">
+                    <label for="resume" class="upload-label">📄 Upload Your Resume (.txt, .pdf, .docx)</label>
+                    <input type="file" id="resume" name="resume" accept=".txt,.pdf,.docx" required onchange="updateLabel()">
+                    <span id="file-name">No file chosen</span>
+                    <button type="submit" class="submit-btn">🚀 Predict Category</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        function updateLabel() {
+            const fileInput = document.getElementById('resume');
+            const fileName = document.getElementById('file-name');
+            fileName.textContent = fileInput.files.length ? fileInput.files[0].name : 'No file chosen';
+        }
+    </script>
 </body>
 </html>
-
