@@ -5,14 +5,6 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from waitress import serve 
 
-import os
-
-if os.path.exists('model'):
-    print("Files in 'model' folder:", os.listdir('model'))
-else:
-    print("'model' folder not found.")
-
-
 
 # Initialize Flask app
 app = Flask(__name__)
