@@ -103,7 +103,7 @@ def upload_file():
         return render_template("result.html", category=category, resume_text=resume_text)
 
 
-# Run the app
-if __name__ == "__main__":
-    serve(app, host='127.0.0.1', port=5000)
+if __name__ == '__main__':
+    app.run()
+
 
