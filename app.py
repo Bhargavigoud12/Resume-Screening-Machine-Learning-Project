@@ -7,9 +7,11 @@ from waitress import serve
 
 import os
 
-print("Current directory:", os.getcwd())
-print("Files in current directory:", os.listdir())
-print("Files in 'model' folder:", os.listdir('model'))
+if os.path.exists('model'):
+    print("Files in 'model' folder:", os.listdir('model'))
+else:
+    print("'model' folder not found.")
+
 
 
 # Initialize Flask app
