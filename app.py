@@ -4,7 +4,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from waitress import serve 
- 
+
+
 # Initialize Flask app
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
@@ -12,9 +13,9 @@ UPLOAD_FOLDER = 'uploads/'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Load pre-trained Random Forest model and label encoder 
-model_path = r'enter path here'#path to random_forest_model.pkl
-encoder_path = r'enter path here'#path to label_encoder.pkl
-vectorizer_path = r'enter path here' # path to tfidf_vectorizer.pkl
+model_path = r'G:\RESUME SCREENING\model\random_forest_model.pkl'
+encoder_path = r'G:\RESUME SCREENING\model\label_encoder.pkl'
+vectorizer_path = r'G:\RESUME SCREENING\model\tfidf_vectorizer.pkl'
 
 with open(model_path, 'rb') as model_file:
     rf_model = pickle.load(model_file)
@@ -38,13 +39,34 @@ def clean_resume(resume_text):
     resume_text = re.sub(r"\s+", " ", resume_text)
     return resume_text
 
+# INSERT extract_text() function here 👇
+from docx import Document
+import PyPDF2
+
+def extract_text(file_path, extension):
+    text = ""
+    if extension == 'txt':
+        with open(file_path, 'r', encoding='utf-8') as f:
+            text = f.read()
+    elif extension == 'pdf':
+        with open(file_path, 'rb') as f:
+            pdf_reader = PyPDF2.PdfReader(f)
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+    elif extension == 'docx':
+        doc = Document(file_path)
+        text = '\n'.join([para.text for para in doc.paragraphs])
+    else:
+        text = None
+    return text
+
 # Route for the homepage
 @app.route("/")
 def index():
     return render_template("index.html")
 
 # Route to handle file upload and prediction
-@app.route("/upload", methods=["POST"])
+@app.route("/uploads", methods=["POST"])
 def upload_file():
     if 'resume' not in request.files:
         flash("No file part")
@@ -56,21 +78,30 @@ def upload_file():
         return redirect(request.url)
 
     if file:
-        file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+        filename = file.filename
+        extension = filename.rsplit('.', 1)[1].lower()
+        allowed_extensions = {'txt', 'pdf', 'docx'}
+
+        if extension not in allowed_extensions:
+            flash("Unsupported file format. Please upload a .txt, .pdf, or .docx file.")
+            return redirect(url_for('index'))
+
+        file_path = os.path.join(UPLOAD_FOLDER, filename)
         file.save(file_path)
 
-        # Read the file and clean it
-        with open(file_path, 'r', encoding='utf-8') as f:
-            resume_text = f.read()
+        resume_text = extract_text(file_path, extension)
+        if not resume_text:
+            flash("Failed to read the resume. Make sure it's not encrypted or damaged.")
+            return redirect(url_for('index'))
 
         cleaned_text = clean_resume(resume_text)
         transformed_text = vectorizer.transform([cleaned_text])
 
-        # Make a prediction
         predicted_label = rf_model.predict(transformed_text)[0]
         category = label_encoder.inverse_transform([predicted_label])[0]
 
         return render_template("result.html", category=category, resume_text=resume_text)
+
 
 # Run the app
 if __name__ == "__main__":
