@@ -13,9 +13,10 @@ UPLOAD_FOLDER = 'uploads/'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Load pre-trained Random Forest model and label encoder 
-model_path = r'\model\random_forest_model.pkl'
-encoder_path = r'\model\label_encoder.pkl'
-vectorizer_path = r'\model\tfidf_vectorizer.pkl'
+model_path = 'model/random_forest_model.pkl'
+encoder_path = 'model/label_encoder.pkl'
+vectorizer_path = 'model/tfidf_vectorizer.pkl'
+
 
 with open(model_path, 'rb') as model_file:
     rf_model = pickle.load(model_file)
