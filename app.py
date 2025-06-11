@@ -18,10 +18,10 @@ app.secret_key = "your_secret_key"
 UPLOAD_FOLDER = 'uploads/'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Load pre-trained Random Forest model and label encoder 
-model_path = 'model/random_forest_model.pkl'
-encoder_path = 'model/label_encoder.pkl'
-vectorizer_path = 'model/tfidf_vectorizer.pkl'
+# Instead of 'model/random_forest_model.pkl', use:
+model_path      = 'random_forest_model.pkl'
+encoder_path    = 'label_encoder.pkl'
+vectorizer_path = 'tfidf_vectorizer.pkl'
 
 
 with open(model_path, 'rb') as model_file:
