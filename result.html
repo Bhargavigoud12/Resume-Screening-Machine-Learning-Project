@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    
 </head>
 <body>
-    <div class="container">
-        <h1>Prediction Result</h1>
-        <p><strong>Predicted Category:</strong> {{ category }}</p> 
-        <a href="/">Go Back</a>
+    <div class="container result-card">
+        <h1>🎯 Prediction Result</h1>
+        <p><strong>Predicted Category:</strong> <span class="category">{{ category }}</span></p> 
+        <a href="/">🔁 Try Another</a>
     </div>
 </body>
 </html>
